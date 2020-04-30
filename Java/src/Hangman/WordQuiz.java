@@ -1,6 +1,9 @@
 package Hangman;
 
+import java.io.BufferedReader;
+
 public class WordQuiz {
+
     public boolean addWordList(WordList wordList){return false;}
     public void deleteWordList(WordList wordList){}
     public void setConsoleReader(ConsoleReader consoleReader){}
@@ -27,6 +30,9 @@ public class WordQuiz {
         playGame(length,subject,Difficulty.EASY);
     }
     public void playGame(int length, Subject subject, Difficulty difficulty){
-        while
+        Writer writer = new ConsoleWriter(subject,difficulty,new WordList(subject).getWordOfLength(length));
+        //
+        // ConsoleReader reader = new ConsoleReader(new BufferedReader());
+
     }
 }
