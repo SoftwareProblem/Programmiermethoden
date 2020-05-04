@@ -10,6 +10,15 @@ public abstract class Writer {
         this.difficulty = difficulty;
         this.word = string;
     }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public void setWord(String word){
+        this.word = word;
+    }
+
     public boolean write(char[] charArray, char cha, int failedAttempts){
         return false;
     }

@@ -24,10 +24,8 @@ public class WordList {
             String[] splitList = rawList.split(";");
             wordList = new ArrayList<QuizWord>();
             for (int i = 0; i < splitList.length; i++) {
-
                 QuizWord word = new QuizWord(splitList[i]);
                 wordList.add(word);
-
             }
         }
         catch (FileNotFoundException e) {

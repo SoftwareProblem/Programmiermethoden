@@ -80,8 +80,6 @@ public class WordQuiz {
                 wordListSoftDrinks=null;
             case Wuppi:
                 wordListWuppi=null;
-
-
         }
 
 
@@ -91,7 +89,7 @@ public class WordQuiz {
         this.consoleReader=consoleReader;
     }
 
-    public void setWriter(Writer writer) {
+    public void addWriter(Writer writer) {
     }
 
     public void playgame() {
@@ -142,7 +140,6 @@ public class WordQuiz {
                 gameList=wordListWuppi;
                 break;
         }
-        System.out.println(gameList);
         int triesLeft=0;
         switch (difficulty){
             case EASY:
