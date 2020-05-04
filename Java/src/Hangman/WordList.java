@@ -18,11 +18,8 @@ public class WordList {
      * @author Sören Kröger
      */
     protected boolean readListFromFile(String file) {
-
         try {
-
-            File list = new File(file);
-            BufferedReader fileReader = new BufferedReader(new FileReader(list));
+            BufferedReader fileReader = new BufferedReader(new FileReader(new File(file)));
             String rawList = fileReader.readLine();
             String[] splitList = rawList.split(";");
             wordList = new ArrayList<QuizWord>();
@@ -34,6 +31,7 @@ public class WordList {
             }
         }
         catch (FileNotFoundException e) {
+            e.printStackTrace();
             return false;
         }
         catch (IOException e) {

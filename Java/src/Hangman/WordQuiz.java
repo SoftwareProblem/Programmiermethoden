@@ -171,7 +171,6 @@ public class WordQuiz {
         while (triesLeft>0){
             consoleReader.readNextChar();
 
-
         }
 
 
