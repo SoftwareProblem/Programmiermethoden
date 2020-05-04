@@ -17,14 +17,10 @@ public class HangmanEntry {
         WordList videoGamesList=new WordList(Subject.Videogames);
         WordList softDrinksList=new WordList(Subject.Softdrinks);
         WordList wuppiList=new WordList(Subject.Wuppi);
-        animalList.readListFromFile("../words.txt");
+        animalList.readListFromFile("../Java/src/words.txt");
         System.out.println(animalList.getWordOfLength(9));
-
         System.out.println(wordQuiz.addWordList(animalList));
-
-
-        wordQuiz.playgame();
-
+        //wordQuiz.playgame();
     }
 
 
