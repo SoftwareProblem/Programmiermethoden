@@ -6,5 +6,7 @@ public abstract class Writer {
     private String word;
 
     public Writer(Subject subject, Difficulty difficulty, String string){}
-    public boolean write(char[] charArray, char cha, int failedAttempts){return false;}
+    public boolean write(char[] charArray, char cha, int failedAttempts){
+        return false;
+    }
 }
