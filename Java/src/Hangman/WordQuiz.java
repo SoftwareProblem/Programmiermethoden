@@ -2,10 +2,12 @@ package Hangman;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class WordQuiz {
     private ArrayList<WordList> wordLists;
     private ConsoleReader consoleReader;
+    private Writer writer;
 
     public boolean addWordList(WordList wordList) {
         if (wordList==null){
@@ -35,6 +37,7 @@ public class WordQuiz {
     }
 
     public void addWriter(Writer writer) {
+        this.writer = writer;
     }
 
     public void playgame() {
@@ -66,21 +69,39 @@ public class WordQuiz {
     }
 
     public void playGame(int length, Subject subject, Difficulty difficulty) {
-        //Writer writer = new ConsoleWriter(subject, difficulty, new WordList(subject).getWordOfLength(length));
+        boolean gameFinished = false;
+        boolean foundSome;
+        int failedAttempts = 0;
+        char[] guessedCharacters=new char[length];
+        char newestChar;
         WordList gameList=null;
         for(WordList list : wordLists){
             if(list.getSubject().equals(subject)){
                 gameList=list;
-            } else {
-                System.out.println("Ungültiges Subject");
             }
         }
-        boolean gameFinished = false;
-        String searchedWord;
-        searchedWord=gameList.getWordOfLength(length);
-        char[] guessedCharacters=new char[length];
-        while (gameFinished!=true){
-            consoleReader.readNextChar();
+        String searchedWord = gameList.getWordOfLength(length);
+        char[] encryptedWord = searchedWord.toCharArray();
+        Arrays.fill(encryptedWord, '-');
+        writer.setDifficulty(difficulty);
+        writer.setWord(searchedWord);
+        writer.setSubject(subject);
+        while (!gameFinished){
+            foundSome = false;
+            newestChar = consoleReader.readNextChar();
+            for(int i=0;i<length;i++){
+                if(searchedWord.charAt(i)==newestChar){
+                    encryptedWord[i]=newestChar;
+                    foundSome = true;
+                }
+            }
+            if(!foundSome){
+                failedAttempts++;
+            }
+            if(Arrays.equals(searchedWord.toCharArray(), encryptedWord)){
+                failedAttempts=-1;
+            }
+            gameFinished = writer.write(encryptedWord,newestChar,failedAttempts);
         }
 
 

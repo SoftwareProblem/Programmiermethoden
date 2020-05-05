@@ -4,11 +4,8 @@ public abstract class Writer {
     protected Subject subject;
     protected Difficulty difficulty;
     protected String word;
-
-    public Writer(Subject subject, Difficulty difficulty, String string){
+    public void setSubject(Subject subject){
         this.subject = subject;
-        this.difficulty = difficulty;
-        this.word = string;
     }
 
     public void setDifficulty(Difficulty difficulty) {
