@@ -11,6 +11,9 @@ public class WordQuiz {
         if (wordList==null){
             return false;
         }
+        if(wordLists==null){
+            wordLists = new ArrayList<>();
+        }
         for (WordList list : wordLists) {
             if (wordList.getSubject().equals(list.getSubject())) {
                 return false;
@@ -68,16 +71,12 @@ public class WordQuiz {
         for(WordList list : wordLists){
             if(list.getSubject().equals(subject)){
                 gameList=list;
+            } else {
+                System.out.println("Ungültiges Subject");
             }
         }
         boolean gameFinished = false;
         String searchedWord;
-        int newLength=length;
-        while (gameList.getWordOfLength(newLength)==null){
-            System.out.println("Kein Wort dieser Länge gefunden.\nBitte geben sie eine andere Länge ein.");
-            //input auf int Parsen
-            System.out.println(newLength);
-        }
         searchedWord=gameList.getWordOfLength(length);
         char[] guessedCharacters=new char[length];
         while (gameFinished!=true){
