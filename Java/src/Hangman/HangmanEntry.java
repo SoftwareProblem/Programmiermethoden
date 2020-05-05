@@ -5,9 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 
 public class HangmanEntry {
-
-
-
     public static void main(String[] args) throws FileNotFoundException {
         WordQuiz wordQuiz=new WordQuiz();
         ConsoleReader consoleReader=new ConsoleReader(new BufferedReader(new InputStreamReader(System.in)));
@@ -18,10 +15,11 @@ public class HangmanEntry {
                                                 new WordList(Subject.Cars),
                                                 new WordList(Subject.Videogames),
                                                 new WordList(Subject.Softdrinks),
-                                                new WordList(Subject.Wuppi)
+                                                new WordList(Subject.Wuppi),
+                                                new WordList(Subject.Fluppi)
         };
         for(int i=0;i<wordlists.length;i++){
-            wordlists[i].readListFromFile("../Java/src/Hangman/Data/words"+i+".txt");
+            wordlists[i].readListFromFile("../Java/src/Hangman/Data/"+wordlists[i].getSubject()+".txt");
             wordQuiz.addWordList(wordlists[i]);
         }
         wordQuiz.playgame();

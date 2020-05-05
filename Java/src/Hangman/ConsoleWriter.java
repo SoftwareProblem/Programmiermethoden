@@ -17,6 +17,7 @@ public class ConsoleWriter extends Writer {
             return true;
         }
         System.out.println("Anzahl der Fehlversuche: "+failedAttempts);
+        System.out.println("Deine nächste Auswahl: ");
         return false;
     }
 }

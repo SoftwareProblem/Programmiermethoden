@@ -1,6 +1,5 @@
 package Hangman;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -86,12 +85,19 @@ public class WordQuiz {
         writer.setDifficulty(difficulty);
         writer.setWord(searchedWord);
         writer.setSubject(subject);
+        System.out.println(
+                        "Das Spiel beginnt. \n" +
+                        "Der Begriff stammt aus der Kategorie: "+subject+"\n" +
+                        "Du hast "+difficulty.getValue()+" Fehlversuche.\n" +
+                        "Deine Auswahl = "
+
+        );
         while (!gameFinished){
             foundSome = false;
             newestChar = consoleReader.readNextChar();
             for(int i=0;i<length;i++){
-                if(searchedWord.charAt(i)==newestChar){
-                    encryptedWord[i]=newestChar;
+                if(Character.toUpperCase(searchedWord.charAt(i))==Character.toUpperCase(newestChar)){
+                    encryptedWord[i]=searchedWord.charAt(i);
                     foundSome = true;
                 }
             }
