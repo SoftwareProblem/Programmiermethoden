@@ -5,11 +5,6 @@ import java.util.ArrayList;
 
 public class WordQuiz {
     private ArrayList<WordList> wordLists;
-    private WordList wordListAnimals;
-    private WordList wordListCars;
-    private WordList wordListVideoGames;
-    private WordList wordListSoftDrinks;
-    private WordList wordListWuppi;
     private ConsoleReader consoleReader;
 
     public boolean addWordList(WordList wordList) {
@@ -29,20 +24,7 @@ public class WordQuiz {
         if (wordList.getSubject()==null){
             return;
         }
-        switch (wordList.getSubject()){
-            case Animals:
-                wordListAnimals=null;
-            case Cars:
-                wordListCars=null;
-            case Videogames:
-                wordListVideoGames=null;
-            case Softdrinks:
-                wordListSoftDrinks=null;
-            case Wuppi:
-                wordListWuppi=null;
-        }
-
-
+        wordLists.removeIf(list -> list.getSubject().equals(wordList.getSubject()));
     }
 
     public void setConsoleReader(ConsoleReader consoleReader) {
