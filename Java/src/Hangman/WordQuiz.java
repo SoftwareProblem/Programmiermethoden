@@ -1,9 +1,10 @@
 package Hangman;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
 
 public class WordQuiz {
-
+    private ArrayList<WordList> wordLists;
     private WordList wordListAnimals;
     private WordList wordListCars;
     private WordList wordListVideoGames;
@@ -15,54 +16,13 @@ public class WordQuiz {
         if (wordList==null){
             return false;
         }
-        switch (wordList.getSubject()){
-            case Animals:
-                if (wordListAnimals==null){
-                    wordListAnimals=wordList;
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            case Cars:
-                if (wordListCars==null){
-                    wordListCars=wordList;
-                    return true;
-                }
-                else{
-                    return false;
-                }
-
-            case Videogames:
-                if (wordListVideoGames==null){
-                    wordListVideoGames=wordList;
-                    return true;
-                }
-                else{
-                    return false;
-                }
-
-            case Softdrinks:
-                if (wordListSoftDrinks==null){
-                    wordListSoftDrinks=wordList;
-                    return true;
-                }
-                else{
-                    return false;
-                }
-
-            case Wuppi:
-                if (wordListWuppi==null){
-                    wordListWuppi=wordList;
-                    return true;
-                }
-                else{
-                    return false;
-                }
-
+        for (WordList list : wordLists) {
+            if (wordList.getSubject().equals(list.getSubject())) {
+                return false;
+            }
         }
-
-        return false;
+        wordLists.add(wordList);
+        return true;
     }
 
     public void deleteWordList(WordList wordList) {
