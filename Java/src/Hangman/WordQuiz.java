@@ -65,39 +65,12 @@ public class WordQuiz {
     public void playGame(int length, Subject subject, Difficulty difficulty) {
         //Writer writer = new ConsoleWriter(subject, difficulty, new WordList(subject).getWordOfLength(length));
         WordList gameList=null;
-        switch (subject){
-            case Animals:
-                gameList=wordListAnimals;
-                break;
-            case Cars:
-                gameList=wordListCars;
-                break;
-            case Videogames:
-                gameList=wordListVideoGames;
-                break;
-            case Softdrinks:
-                gameList=wordListSoftDrinks;
-                break;
-            case Wuppi:
-                gameList=wordListWuppi;
-                break;
+        for(WordList list : wordLists){
+            if(list.getSubject().equals(subject)){
+                gameList=list;
+            }
         }
-        int triesLeft=0;
-        switch (difficulty){
-            case EASY:
-                triesLeft=15;
-                break;
-            case NORMAL:
-                triesLeft=10;
-                break;
-            case HARD:
-                triesLeft=5;
-                break;
-            case EXTREM:
-                triesLeft=1;
-                break;
-        }
-
+        boolean gameFinished = false;
         String searchedWord;
         int newLength=length;
         while (gameList.getWordOfLength(newLength)==null){
@@ -107,9 +80,8 @@ public class WordQuiz {
         }
         searchedWord=gameList.getWordOfLength(length);
         char[] guessedCharacters=new char[length];
-        while (triesLeft>0){
+        while (gameFinished!=true){
             consoleReader.readNextChar();
-
         }
 
 
