@@ -7,6 +7,7 @@ public class WordQuiz {
     private ArrayList<WordList> wordLists;
     private ConsoleReader consoleReader;
     private Writer writer;
+    private Writer excelWriter;
 
     public boolean addWordList(WordList wordList) {
         if (wordList==null){
@@ -36,7 +37,11 @@ public class WordQuiz {
     }
 
     public void addWriter(Writer writer) {
-        this.writer = writer;
+        if(writer.getClass() == ConsoleWriter.class){
+            this.writer = writer;
+        } else if(writer.getClass() == ExcelWriter.class){
+            this.excelWriter = writer;
+        }
     }
 
     public void playgame() {
@@ -71,7 +76,6 @@ public class WordQuiz {
         boolean gameFinished = false;
         boolean foundSome;
         int failedAttempts = 0;
-        char[] guessedCharacters=new char[length];
         char newestChar;
         WordList gameList=null;
         for(WordList list : wordLists){
@@ -85,6 +89,9 @@ public class WordQuiz {
         writer.setDifficulty(difficulty);
         writer.setWord(searchedWord);
         writer.setSubject(subject);
+        excelWriter.setDifficulty(difficulty);
+        excelWriter.setWord(searchedWord);
+        excelWriter.setSubject(subject);
         System.out.println(
                         "Das Spiel beginnt. \n" +
                         "Der Begriff stammt aus der Kategorie: "+subject+"\n" +
@@ -107,6 +114,7 @@ public class WordQuiz {
             if(Arrays.equals(searchedWord.toCharArray(), encryptedWord)){
                 failedAttempts=-1;
             }
+            excelWriter.write(encryptedWord,newestChar,failedAttempts);
             gameFinished = writer.write(encryptedWord,newestChar,failedAttempts);
         }
 

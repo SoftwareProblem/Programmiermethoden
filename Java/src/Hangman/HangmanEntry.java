@@ -10,6 +10,7 @@ public class HangmanEntry {
         ConsoleReader consoleReader=new ConsoleReader(new BufferedReader(new InputStreamReader(System.in)));
         wordQuiz.setConsoleReader(consoleReader);
         wordQuiz.addWriter(new ConsoleWriter());
+        wordQuiz.addWriter(new ExcelWriter());
         WordList[] wordlists = new WordList[]{
                                                 new WordList(Subject.Animals),
                                                 new WordList(Subject.Cars),
