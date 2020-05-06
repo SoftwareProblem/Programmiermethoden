@@ -2,6 +2,7 @@ package Hangman;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.util.XMLHelper;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -18,16 +19,37 @@ public class ExcelWriter extends Writer{
         XSSFSheet sheet = null;
         Row row;
         Cell cell;
+        Cell lastCell = null;
         try {
             workbook = new XSSFWorkbook(new FileInputStream(new File(this.subject+".xls")));
-            Cell lastCell = workbook.getSheetAt(0).getRow(workbook.getSheetAt(0).getLastRowNum()).getCell(3);
-            if(lastCell.getNumericCellValue()==0.0){
-                sheet = workbook.createSheet(""+System.currentTimeMillis());
-            } else {
-                sheet = workbook.getSheetAt(workbook.getNumberOfSheets());
-            }
+            lastCell = workbook.getSheetAt(0).getRow(workbook.getSheetAt(workbook.getNumberOfSheets()-1).getLastRowNum()).getCell(3);
         } catch (FileNotFoundException e){
             workbook = new XSSFWorkbook();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (lastCell!=null){
+            if(lastCell.getCellType()== CellType.NUMERIC){
+                System.out.println((int) lastCell.getNumericCellValue());
+                if((int) lastCell.getNumericCellValue()==0){
+                    sheet = workbook.createSheet(""+System.currentTimeMillis());
+                    row = sheet.createRow(0);
+                    cell = row.createCell(0);
+                    cell.setCellValue("Zeit");
+                    cell = row.createCell(1);
+                    cell.setCellValue("Aktueller Stand");
+                    cell = row.createCell(2);
+                    cell.setCellValue("Zu letzt geratener Buchstabe");
+                    cell = row.createCell(3);
+                    cell.setCellValue("Anzahl noch möglicher Fehlversuche");
+                }
+                else {
+                    sheet = workbook.getSheetAt(workbook.getNumberOfSheets()-1);
+                }
+            } else {
+                sheet = workbook.getSheetAt(workbook.getNumberOfSheets()-1);
+            }
+        } else {
             sheet = workbook.createSheet(""+System.currentTimeMillis());
             row = sheet.createRow(0);
             cell = row.createCell(0);
@@ -38,9 +60,9 @@ public class ExcelWriter extends Writer{
             cell.setCellValue("Zu letzt geratener Buchstabe");
             cell = row.createCell(3);
             cell.setCellValue("Anzahl noch möglicher Fehlversuche");
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+
         int rownum = sheet.getLastRowNum()+1;
         int cellnum = 0;
 
@@ -62,7 +84,6 @@ public class ExcelWriter extends Writer{
             workbook.write(out);
             out.close();
         } catch (IOException e) {
-            System.out.println(123);
             e.printStackTrace();
         }
         return false;
