@@ -6,17 +6,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class HangmanEntry {
-
-
-
     public static void main(String[] args) throws IOException {
-
-        ExcelWriter excelWriter =new ExcelWriter();
         WordQuiz wordQuiz=new WordQuiz();
-        ConsoleReader consoleReader=new ConsoleReader(new BufferedReader(new InputStreamReader(System.in)));
-        wordQuiz.setConsoleReader(consoleReader);
+        wordQuiz.setConsoleReader(new ConsoleReader(new BufferedReader(new InputStreamReader(System.in))));
         wordQuiz.addWriter(new ConsoleWriter());
-        wordQuiz.addWriter(excelWriter);
+        wordQuiz.addWriter(new ExcelWriter());
         WordList[] wordLists = new WordList[]{
                                                 new WordList(Subject.Animals),
                                                 new WordList(Subject.Cars),
@@ -24,9 +18,9 @@ public class HangmanEntry {
                                                 new WordList(Subject.Softdrinks),
                                                 new WordList(Subject.Wuppi)
         };
-        for(int i=0;i<wordLists.length;i++){
-            wordLists[i].readListFromFile("../Java/src/Hangman/Data/words"+i+".txt");
-            wordQuiz.addWordList(wordLists[i]);
+        for(WordList list : wordLists){
+            list.readListFromFile("../Java/src/Hangman/Data/"+list.getSubject()+".txt");
+            wordQuiz.addWordList(list);
         }
         BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
         boolean wantsToPlay=false;
@@ -36,24 +30,22 @@ public class HangmanEntry {
         int chosenNumber=-1;
         int chosenLength=0;
         String testTMP;
-       do {
+        do {
             System.out.println("Chose your subject");
-            for (int i=0;i<Subject.values().length-1;i++) {
+            for (int i=0;i<Subject.values().length;i++) {
 
                 System.out.println(i+": " + Subject.values()[i]);
             }
             while (!inputCorrect){
                 testTMP=bufferedReader.readLine();
                 if(testTMP.equals("")){
-
                     inputCorrect=true;
-                    continue;
                 }
                 try {
                     chosenNumber=Integer.parseInt(String.valueOf(testTMP.toCharArray()));
                 }
-                catch (NumberFormatException e){
-                    continue;
+                catch (NumberFormatException ignored){
+
                 }
 
                 if (chosenNumber>=0&&chosenNumber<Subject.values().length){
@@ -72,15 +64,12 @@ public class HangmanEntry {
            while (!inputCorrect){
                testTMP=bufferedReader.readLine();
                if(testTMP.equals("")){
-
                    inputCorrect=true;
-                   continue;
                }
                try {
                   chosenNumber=Integer.parseInt(String.valueOf(testTMP.toCharArray()));
                }
-               catch (NumberFormatException e){
-                   continue;
+               catch (NumberFormatException ignored){
                }
 
 
@@ -91,7 +80,6 @@ public class HangmanEntry {
                }
 
            }
-
            inputCorrect=false;
            System.out.println("Chose the length of your Word");
            while (!inputCorrect){
@@ -99,13 +87,11 @@ public class HangmanEntry {
                if(testTMP.equals("")){
                    inputCorrect=true;
                    chosenLength=0;
-                   continue;
                }
                try {
                   chosenNumber =Integer.parseInt(String.valueOf(testTMP.toCharArray()));
                }
-               catch (NumberFormatException e){
-                   continue;
+               catch (NumberFormatException ignored){
                }
 
              if (chosenNumber>0){
@@ -117,42 +103,30 @@ public class HangmanEntry {
            }
            inputCorrect=false;
            if (chosenLength==0&&chosenDifficulty==null&&chosenSubject==null){
-
                wordQuiz.playGame();
            }
            else if(chosenLength!=0&&chosenDifficulty==null&&chosenSubject==null){
-
                wordQuiz.playGame(chosenLength);
            }
            else if(chosenLength==0&&chosenDifficulty==null&&chosenSubject!=null){
               wordQuiz.playGame(chosenSubject);
-
            }
            else if(chosenLength==0&&chosenSubject==null&&chosenDifficulty!=null){
                wordQuiz.playGame(chosenDifficulty);
-
            }
            else if(chosenLength!=0&&chosenDifficulty==null&&chosenSubject!=null){
-
                wordQuiz.playGame(chosenLength, chosenSubject);
-
            }
             else if(chosenLength!=0&&chosenDifficulty!=null&&chosenSubject==null){
                 wordQuiz.playGame(chosenLength, chosenDifficulty);
-
            }
             else if (chosenLength==0&&chosenDifficulty!=null&&chosenSubject!=null){
-
                 wordQuiz.playGame( chosenSubject, chosenDifficulty);
-
            }
             else if(chosenLength!=0&&chosenDifficulty!=null&&chosenSubject!=null){
-
                 wordQuiz.playGame(chosenLength, chosenSubject, chosenDifficulty);
            }
-
             System.out.println("Möchten sie erneut Spielen\n"+"geben sie Yes/No ein");
-
             boolean isYesNo=true;
             while (isYesNo){
                 String yesNo= bufferedReader.readLine();
@@ -165,11 +139,6 @@ public class HangmanEntry {
                     isYesNo=false;
                 }
             }
-
-            
         }while (wantsToPlay);
-
     }
-
-
 }

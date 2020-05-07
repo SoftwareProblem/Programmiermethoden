@@ -3,14 +3,16 @@ package Hangman;
 import java.io.*;
 import java.util.*;
 
+
 public class WordList {
     private Subject subject;
     private ArrayList<QuizWord> wordList;
 
-
+    /**
+     * @param subject is the subject of the current WordList
+     */
     public WordList(Subject subject) {
         this.subject = subject;
-
     }
 
     /**
@@ -38,7 +40,11 @@ public class WordList {
 
         return true;
     }
-
+    /**
+     * Returns a Random QuizWord from the WordList.
+     * Returns null when the WordList is empty.
+     * @author Sören Kröger
+     */
     public String getRandomWord() {
         if (wordList.isEmpty()) {
             return null;
@@ -50,6 +56,7 @@ public class WordList {
 
     /**
      * Returns a Random QuizWord with a given length from the WordList.
+     * Returns null when the WordList is empty.
      * Returns null if there is no QuizWord with the the given length.
      * @author Sören Kröger
      */

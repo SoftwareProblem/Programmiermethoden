@@ -9,6 +9,11 @@ public class ConsoleReader {
     public ConsoleReader(BufferedReader bufferedReader){
         this.reader = bufferedReader;
     }
+
+    /**
+     * read the first char from the console. If there is no char, it will ask till there is one.
+     * @return the first char
+     */
     public char readNextChar(){
         String line = "";
         try {
@@ -16,6 +21,12 @@ public class ConsoleReader {
         } catch (IOException ioe){
             ioe.printStackTrace();
         }
-        return line.charAt(0);
+        if(line.length()>0){
+            return line.charAt(0);
+        } else {
+            System.out.println("No input. \n " +
+                    "Please try again:");
+            return readNextChar();
+        }
     }
 }

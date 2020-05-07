@@ -9,6 +9,11 @@ public class WordQuiz {
     private Writer writer;
     private Writer excelWriter;
 
+    /**
+     * adds a Wordlist to an ArrayList
+     * @param wordList the wordList who should properly add to the ArrayList
+     * @return true if it added to the ArrayList, if not it return false
+     */
     public boolean addWordList(WordList wordList) {
         if (wordList==null){
             return false;
@@ -44,7 +49,7 @@ public class WordQuiz {
         }
     }
 
-    public void playgame() {
+    public void playGame() {
         playGame(5, Subject.Animals, Difficulty.EASY);
     }
 
@@ -93,10 +98,10 @@ public class WordQuiz {
         excelWriter.setWord(searchedWord);
         excelWriter.setSubject(subject);
         System.out.println(
-                        "Das Spiel beginnt. \n" +
-                        "Der Begriff stammt aus der Kategorie: "+subject+"\n" +
-                        "Du hast "+difficulty.getValue()+" Fehlversuche.\n" +
-                        "Deine Auswahl = "
+                        "Let the game begin. \n" +
+                        "The word is from the subject: "+subject+"\n" +
+                        "You have "+difficulty.getValue()+" failed attempts.\n" +
+                        "Your first choose: "
 
         );
         while (!gameFinished){
