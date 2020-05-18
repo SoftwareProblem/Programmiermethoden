@@ -119,11 +119,8 @@ public class WordQuiz {
             if(Arrays.equals(searchedWord.toCharArray(), encryptedWord)){
                 failedAttempts=-1;
             }
-            excelWriter.write(encryptedWord,newestChar,failedAttempts);
-            gameFinished = writer.write(encryptedWord,newestChar,failedAttempts);
+            excelWriter.write(encryptedWord, newestChar, failedAttempts);
+            gameFinished = writer.write(encryptedWord, newestChar, failedAttempts);
         }
-
-
-
     }
 }
