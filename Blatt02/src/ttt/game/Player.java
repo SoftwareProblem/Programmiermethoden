@@ -3,26 +3,17 @@ package ttt.game;
 import ttt.strategy.IGameStrategy;
 
 public class Player implements IPlayer {
-
-    private IGameStrategy strategy;
     private char symbol;
+    private IGameStrategy strategy;
     private IMove currentMove;
 
-    public IMove getCurrentMove() {
-        return currentMove;
+    public Player(char symbol){
+        this.symbol = symbol;
     }
-
-    public void setCurrentMove(IMove currentMove) {
-        this.currentMove = currentMove;
-    }
-
-    Player (char symbol){
-        setSymbol(symbol);
-    };
 
     @Override
     public void setStrategy(IGameStrategy s) {
-
+        this.strategy = s;
     }
 
     @Override
@@ -30,12 +21,8 @@ public class Player implements IPlayer {
         return strategy.nextMove(g);
     }
 
-    public void setSymbol(char symbol) {
-        this.symbol = symbol;
-    }
-
     @Override
     public char getSymbol() {
-        return 0;
+        return this.symbol;
     }
 }

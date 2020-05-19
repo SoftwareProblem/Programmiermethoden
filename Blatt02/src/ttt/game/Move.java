@@ -3,27 +3,18 @@ package ttt.game;
 public class Move implements IMove {
     private int row;
     private int column;
-    Move(int row, int column){
-        setRow(row);
-        setColumn(column);
 
-    }
-
-    public void setRow(int row) {
+    public Move(int row, int column){
         this.row = row;
-    }
-
-    public void setColumn(int column) {
         this.column = column;
     }
-
     @Override
     public int getRow() {
-        return 0;
+        return row;
     }
 
     @Override
     public int getColumn() {
-        return 0;
+        return column;
     }
 }
