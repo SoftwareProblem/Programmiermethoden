@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game  implements IGame{
-    // Sörens
-    private List<IMove> remainingMoves;
     //gemeinsame
     private IPlayer playerO;
     private IPlayer playerX;
@@ -19,14 +17,12 @@ public class Game  implements IGame{
 
     public Game(){
         field = new String[3][3];
-        remainingMoves = new CopyOnWriteArrayList<>();
         for(int i=0;i<field.length;i++){
             for(int j=0;j<field[0].length;j++){
                 field[i][j] = " ! ";
-                remainingMoves.add(new Move(i,j));
             }
         }
-        turn = 0;
+        turn = 1;
     }
 
     @Override
@@ -50,13 +46,21 @@ public class Game  implements IGame{
 
     @Override
     public List<IMove> remainingMoves() {
+        List<IMove> remainingMoves = new LinkedList<>();
+        for(int i=0;i<field.length;i++){
+            for(int j=0;j<field[0].length;j++){
+                if(field[i][j].charAt(1)=='!'){
+                    remainingMoves.add(new Move(i,j));
+                }
+            }
+        }
         return remainingMoves;
     }
 
     @Override
     public void doMove(IMove m) {
         field[m.getRow()][m.getColumn()]= " "+ currentPlayer().getSymbol() +" ";
-        remainingMoves.remove(m);
+        remainingMoves().remove(m);
         /*
         for(Iterator<IMove> iterator = remainingMoves.iterator();iterator.hasNext();){
             IMove move = iterator.next();
@@ -74,7 +78,7 @@ public class Game  implements IGame{
     @Override
     public void undoMove(IMove m) {
         field[m.getRow()][m.getColumn()]= " ! ";
-        remainingMoves.add(m);
+        remainingMoves().add(m);
     }
 
     @Override

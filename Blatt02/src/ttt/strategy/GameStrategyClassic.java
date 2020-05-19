@@ -21,7 +21,6 @@ public class GameStrategyClassic implements IGameStrategy {
         System.out.println("Spieler "+g.currentPlayer().getSymbol()+" ist an der Reihe.");
         row = askRow()-1;
         coloum = askColoum()-1;
-        Iterator test = g.remainingMoves().iterator();
         for(int i=0;i<g.remainingMoves().size();i++){
             if(g.remainingMoves().get(i).getRow()==row){
                 if(g.remainingMoves().get(i).getColumn()==coloum){
