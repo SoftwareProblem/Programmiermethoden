@@ -91,6 +91,10 @@ public class Game  implements IGame{
         }
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
     @Override
     public int evalState(IPlayer p) {
         char symbol = p.getSymbol();
