@@ -74,6 +74,10 @@ public class Game  implements IGame{
         return remainingMoves;
     }
 
+    public int getTurn() {
+        return turn;
+    }
+
     /**
      * Führt den gegebenen Zug aus
      * @param m der berechnete Zug
@@ -100,10 +104,10 @@ public class Game  implements IGame{
     public boolean ended() {
         int evalu = this.evalState(playerO);
         if(evalu == 1){
-            System.out.println("PlayerO gewinnt!");
+            //System.out.println("PlayerO gewinnt!");
             return true;
         } else if(evalu == -1){
-            System.out.println("PlayerX gewinnt!");
+            //System.out.println("PlayerX gewinnt!");
             return true;
         } else if(evalu == 0){
             System.out.println("Unentschieden!");

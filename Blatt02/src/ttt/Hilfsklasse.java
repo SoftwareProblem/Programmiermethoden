@@ -1,5 +1,6 @@
 package ttt;
 
+import ttt.Charts.PieChart;
 import ttt.game.*;
 import ttt.strategy.GameStrategyClassic;
 import ttt.strategy.GameStrategyRandom;
@@ -13,7 +14,8 @@ import java.io.InputStreamReader;
 public class Hilfsklasse {
     public static void main(String[] args){
         Hilfsklasse hilfsklasse = new Hilfsklasse();
-        IGame game;
+        Game game;
+        PieChart pieChartTurns=new PieChart("Turns played");
         boolean weiterSpielen = true;
         while(weiterSpielen) {
             game = new Game();
@@ -22,9 +24,18 @@ public class Hilfsklasse {
             while (!game.ended()) {
                 game.doMove(game.currentPlayer().nextMove(game));
                 game.printField();
+                System.out.println(game.getTurn());
             }
+
+            pieChartTurns.collectPieData((Game) game);
             weiterSpielen = Hilfsklasse.weiterSpielen();
         }
+        pieChartTurns.addData();
+        pieChartTurns.setPanel();
+        pieChartTurns.setSize(1000,800);
+        pieChartTurns.setVisible(true);
+
+
     }
     private static boolean weiterSpielen(){
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
