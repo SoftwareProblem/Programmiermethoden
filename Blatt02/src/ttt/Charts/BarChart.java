@@ -33,7 +33,7 @@ public class BarChart extends Charts {
 
     /**
      * @param game The Game the data is collected from
-     * Counts the times a specific Strategy won
+     * Counts the times a specific Strategy has won
      */
     @Override
     public void collectData(Game game) {

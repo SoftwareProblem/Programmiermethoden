@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
- * A Linechart that shows ne number of won games for every round played
+ * A Linechart that shows the number of won games for every round played
  */
 //Rounds won by Player
 public class LineChart extends Charts {
