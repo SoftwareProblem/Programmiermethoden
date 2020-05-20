@@ -6,16 +6,21 @@ import ttt.game.IPlayer;
 import ttt.game.Move;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Eine Implementierung einer Strategy die den Benutzer die Züge auswählen lässt
+ */
 public class GameStrategyClassic implements IGameStrategy {
+    /**
+     * "Berechnet" den nächsten Zug in dem es den Nutzer fragt.
+     * @param g Das Spiel in dem man sich befindet
+     * @return gibt den "berechneten" Zug aus
+     */
     @Override
     public IMove nextMove(IGame g) {
-        //hopToNext(g.remainingMoves(), g.currentPlayer());
         int row = -1;
         int coloum = -1;
         System.out.println("Spieler "+g.currentPlayer().getSymbol()+" ist an der Reihe.");

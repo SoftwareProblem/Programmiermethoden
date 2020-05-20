@@ -1,40 +1,53 @@
 package ttt.game;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Regelt den Spielablauf
+ */
 public class Game  implements IGame{
-    //gemeinsame
-    private IPlayer playerO;
-    private IPlayer playerX;
-    // Michel
     String[][] field;
     int turn;
+    private IPlayer playerO;
+    private IPlayer playerX;
 
-
+    /**
+     * Initialisiert das Feld und fülllt es mit "leeren" Feldern
+     * Initialisiert den Rundenzähler
+     */
     public Game(){
         field = new String[3][3];
+        turn = 1;
         for(int i=0;i<field.length;i++){
             for(int j=0;j<field[0].length;j++){
                 field[i][j] = " ! ";
             }
         }
-        turn = 1;
     }
 
+    /**
+     * Setzt den PlayerX auf p
+     * @param p ein Spieler
+     */
     @Override
     public void setPlayerX(IPlayer p) {
         this.playerX = p;
     }
 
+    /**
+     * Setzt den PlayerO auf p
+     * @param p ein Spieler
+     */
     @Override
     public void setPlayerO(IPlayer p) {
         this.playerO = p;
     }
 
+    /**
+     * Ermittelt über den Rundenzähler welcher Spieler an der Reihe ist
+     * @return der Spieler der an der Reihe ist
+     */
     @Override
     public IPlayer currentPlayer() {
         if(turn%2==0 ){
@@ -44,6 +57,10 @@ public class Game  implements IGame{
         }
     }
 
+    /**
+     * Überprüft das Spielfeld ob und welche Felder noch frei sind
+     * @return gibt die freien Felder als List zurück
+     */
     @Override
     public List<IMove> remainingMoves() {
         List<IMove> remainingMoves = new LinkedList<>();
@@ -57,98 +74,130 @@ public class Game  implements IGame{
         return remainingMoves;
     }
 
+    /**
+     * Führt den gegebenen Zug aus
+     * @param m der berechnete Zug
+     */
     @Override
     public void doMove(IMove m) {
         field[m.getRow()][m.getColumn()]= " "+ currentPlayer().getSymbol() +" ";
-        remainingMoves().remove(m);
-        /*
-        for(Iterator<IMove> iterator = remainingMoves.iterator();iterator.hasNext();){
-            IMove move = iterator.next();
-            if(move.getRow()==m.getRow()){
-                if(move.getColumn()==m.getColumn()){
-                    field[move.getRow()][move.getColumn()]= " "+ currentPlayer().getSymbol() +" ";
-                    System.out.println("test");
-                    iterator.remove();
-                    System.out.println("test2");
-                }
-            }
-        }*/
     }
 
+    /**
+     * Macht den gegeben Zug rückgängig aus
+     * @param m der gegebene Zug
+     */
     @Override
     public void undoMove(IMove m) {
         field[m.getRow()][m.getColumn()]= " ! ";
-        remainingMoves().add(m);
     }
 
+    /**
+     * Bewertet den aktuellen Status
+     * @return wenn das Spiel zuende ist wird true zurückgegeben
+     */
     @Override
     public boolean ended() {
         int evalu = this.evalState(playerO);
-        if(evalu==1 || evalu==-1 || evalu == 0){
+        if(evalu == 1){
+            System.out.println("PlayerO gewinnt!");
+            return true;
+        } else if(evalu == -1){
+            System.out.println("PlayerX gewinnt!");
+            return true;
+        } else if(evalu == 0){
+            System.out.println("Unentschieden!");
             return true;
         } else {
             return false;
         }
     }
 
+    /**
+     * Überprüft das Feld auf verschiedene Abbruchtypen(Sieg bzw. Niederlage bzw. Unentschieden)
+     * @param p aus wessen "Sicht" die Überprüfung stattfindet
+     * @return gibt den Status zurück: 1 bei Sieg -1 bei Niederlage 0 bei Unentschieden 666 bei keinem Ende
+     */
     @Override
     public int evalState(IPlayer p) {
         char symbol = p.getSymbol();
+        //1. Zeile
         if(field[0][0].charAt(1)!= '!' && field[0][0].charAt(1)==field[0][1].charAt(1) && field[0][0].charAt(1)==field[0][2].charAt(1)){
             if(field[0][0].charAt(1)==symbol){
                 return 1;
             } else {
                 return -1;
             }
-        } else if(field[1][0].charAt(1)!= '!' && field[1][0].charAt(1)==field[1][1].charAt(1)&&field[1][0].charAt(1)==field[1][2].charAt(1)){
+        }
+        // 2. Zeile
+        else if(field[1][0].charAt(1)!= '!' && field[1][0].charAt(1)==field[1][1].charAt(1)&&field[1][0].charAt(1)==field[1][2].charAt(1)){
+            if(field[1][0].charAt(1)==symbol){
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+        // 3. Zeile
+        else if(field[2][0].charAt(1)!= '!' && field[2][0].charAt(1)==field[2][1].charAt(1)&&field[2][0].charAt(1)==field[2][2].charAt(1)){
+            if(field[2][0].charAt(1)==symbol){
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+        // Von oben Links Diagonal
+        else if(field[0][0].charAt(1)!= '!' && field[0][0].charAt(1)==field[1][1].charAt(1)&&field[0][0].charAt(1)==field[2][2].charAt(1)){
             if(field[0][0].charAt(1)==symbol){
                 return 1;
             } else {
                 return -1;
             }
-        } else if(field[2][0].charAt(1)!= '!' && field[2][0].charAt(1)==field[2][1].charAt(1)&&field[2][0].charAt(1)==field[2][2].charAt(1)){
+        }
+        // von unten Links Diagonal
+        else if(field[2][0].charAt(1)!= '!' && field[2][0].charAt(1)==field[1][1].charAt(1)&&field[2][0].charAt(1)==field[0][2].charAt(1)){
+            if(field[2][0].charAt(1)==symbol){
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+        // 1. Spalte
+        else if(field[0][0].charAt(1)!= '!' && field[0][0].charAt(1)==field[1][0].charAt(1)&&field[0][0].charAt(1)==field[2][0].charAt(1)){
             if(field[0][0].charAt(1)==symbol){
                 return 1;
             } else {
                 return -1;
             }
-        } else if(field[0][0].charAt(1)!= '!' && field[0][0].charAt(1)==field[1][1].charAt(1)&&field[0][0].charAt(1)==field[2][2].charAt(1)){
-            if(field[0][0].charAt(1)==symbol){
+        }
+        // 2. Spalte
+        else if(field[0][1].charAt(1)!= '!' && field[0][1].charAt(1)==field[1][1].charAt(1)&&field[0][1].charAt(1)==field[2][1].charAt(1)){
+            if(field[0][1].charAt(1)==symbol){
                 return 1;
             } else {
                 return -1;
             }
-        } else if(field[2][0].charAt(1)!= '!' && field[2][0].charAt(1)==field[1][1].charAt(1)&&field[2][0].charAt(1)==field[0][2].charAt(1)){
-            if(field[0][0].charAt(1)==symbol){
+        }
+        // 3. Spalte
+        else if(field[0][2].charAt(1)!= '!' && field[0][2].charAt(1)==field[1][2].charAt(1)&&field[0][2].charAt(1)==field[2][2].charAt(1)){
+            if(field[0][2].charAt(1)==symbol){
                 return 1;
             } else {
                 return -1;
             }
-        } else if(field[0][0].charAt(1)!= '!' && field[0][0].charAt(1)==field[1][0].charAt(1)&&field[0][0].charAt(1)==field[2][0].charAt(1)){
-            if(field[0][0].charAt(1)==symbol){
-                return 1;
-            } else {
-                return -1;
-            }
-        } else if(field[0][1].charAt(1)!= '!' && field[0][1].charAt(1)==field[1][1].charAt(1)&&field[0][1].charAt(1)==field[2][1].charAt(1)){
-            if(field[0][0].charAt(1)==symbol){
-                return 1;
-            } else {
-                return -1;
-            }
-        } else if(field[0][2].charAt(1)!= '!' && field[0][2].charAt(1)==field[1][2].charAt(1)&&field[0][2].charAt(1)==field[2][2].charAt(1)){
-            if(field[0][0].charAt(1)==symbol){
-                return 1;
-            } else {
-                return -1;
-            }
-        } else if(remainingMoves().size()==0){
+        }
+        // Unentschieden
+        else if(remainingMoves().size()==0){
             return 0;
-        } else {
+        }
+        // Noch kein Ergebnis
+        else {
             return 666;
         }
     }
 
+    /**
+     * Gibt das Spielfeld auf der Konsole aus und erhöht den Rundenzähler um eins
+     */
     @Override
     public void printField() {
         System.out.println("-------------");
