@@ -3,19 +3,15 @@ package ttt.Charts;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.ui.ApplicationFrame;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.xy.DefaultXYDataset;
-import org.jfree.data.xy.XYBarDataset;
 import ttt.game.Game;
 import ttt.game.IPlayer;
 import ttt.game.Player;
-import ttt.strategy.GameStrategyClassic;
 
 import javax.swing.*;
 
-public class BarChart  extends Charts{
+public class BarChart extends Charts {
     //counts the wins by strategies
 
     private int classic;
@@ -24,9 +20,9 @@ public class BarChart  extends Charts{
 
     public BarChart(String title) {
         super(title);
-        classic=0;
-        random=0;
-        minMax=0;
+        classic = 0;
+        random = 0;
+        minMax = 0;
     }
 
     @Override
@@ -34,43 +30,42 @@ public class BarChart  extends Charts{
         whatWon(game);
 
     }
-    @Override
-    public void setPanel() {
-        setContentPane(panel());
-    }
+
 
     @Override
     protected JPanel panel() {
-        JFreeChart chart= makeChart(addData());
+        JFreeChart chart = makeChart(addData());
         return new ChartPanel(chart);
     }
-    public CategoryDataset addData(){
-        DefaultCategoryDataset data=new DefaultCategoryDataset();
+
+
+    @Override
+    public CategoryDataset addData() {
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
         data.addValue(classic, "Classic", "Wins");
-        data.addValue(random, "Random","Wins");
+        data.addValue(random, "Random", "Wins");
         data.addValue(minMax, "MinMax", "Wins");
 
         return data;
     }
 
-public JFreeChart makeChart (CategoryDataset data){
-JFreeChart chart = ChartFactory.createBarChart("Wins by Strategy", "Strategy","Wins" , data);
+    public JFreeChart makeChart(CategoryDataset data) {
+        JFreeChart chart = ChartFactory.createBarChart("Wins by Strategy", "Strategy", "Wins", data);
 
-return chart;
+        return chart;
 
-}
+    }
 
 
-    private void whatWon (Game game){
+    private void whatWon(Game game) {
         if (game.evalState(game.currentPlayer()) == 1) {
 
             countStrategyUP(game.currentPlayer());
         } else {
-            if(game.currentPlayer().getSymbol()=='O'){
+            if (game.currentPlayer().getSymbol() == 'O') {
 
                 countStrategyUP(game.getPlayerX());
-            }
-            else {
+            } else {
                 countStrategyUP(game.getPlayerO());
             }
         }
@@ -78,15 +73,13 @@ return chart;
 
     }
 
-    private void countStrategyUP (IPlayer Iplayer){
-        Player player=(Player)Iplayer;
-        if( player.getStrategy().toString().equals("Classic")){
+    private void countStrategyUP(IPlayer Iplayer) {
+        Player player = (Player) Iplayer;
+        if (player.getStrategy().toString().equals("Classic")) {
             classic++;
-        }
-        else if (player.getStrategy().toString().equals("Random")){
+        } else if (player.getStrategy().toString().equals("Random")) {
             random++;
-        }
-        else if(player.getStrategy().toString().equals("MinMax")){
+        } else if (player.getStrategy().toString().equals("MinMax")) {
             minMax++;
 
         }
