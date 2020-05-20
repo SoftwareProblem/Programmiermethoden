@@ -1,0 +1,7 @@
+Anforderungen:
+-Eine Hilfsklasse die den Programmablauf regelt
+-Eine Klasse die den Spiel Ablauf regelt und das Grundgerüst des Spiels herstellt
+-" " " einen Spieler repräsentiert
+-3 Verschiedene Strategy bzw. 2 + MinMax Integration
+-- dafür die beiden anderen ähnlich wie minMax aufbauen damit keine Probleme entstehen
+- Eine Klasse die einen Zug repräsentiert

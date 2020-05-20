@@ -1,0 +1,3 @@
+Testen ohne JUnit:
+-In allen Konsoleneingaben ungültige Eingaben eingeben(anstatt Zahl Buchstaben o.ä.), dabei leere Eingabe nicht vergessen!
+-Dann in diesem konkreten Fall, verschiedene Strategie-Kombinationen Testen
