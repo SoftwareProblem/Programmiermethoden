@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Hilfsklasse {
+    Player player0;
     public static void main(String[] args){
         Hilfsklasse hilfsklasse = new Hilfsklasse();
         Game game;
@@ -28,7 +29,7 @@ public class Hilfsklasse {
             while (!game.ended()) {
                 game.doMove(game.currentPlayer().nextMove(game));
                 game.printField();
-                System.out.println(game.getTurn());
+                hilfsklasse.siegerKuehren(game);
             }
             barChartWins.collectData(game);
             lineChartPlayer.collectData(game);
@@ -38,11 +39,16 @@ public class Hilfsklasse {
         pieChartTurns.drawChart();
         barChartWins.drawChart();
         lineChartPlayer.drawChart();
-
-
-
-
-
+    }
+    private void siegerKuehren(IGame game){
+        int eval = game.evalState(this.player0);
+        if(eval==1){
+            System.out.println("PlayerO gewinnt!");
+        }else if(eval == -1) {
+            System.out.println("PlayerX gewinnt!");
+        } else if(eval == 0) {
+            System.out.println("Unentschieden");
+        }
     }
     private static boolean weiterSpielen(){
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -64,7 +70,7 @@ public class Hilfsklasse {
     }
     private void initGame(IGame game){
         System.out.println("Spieler0:");
-        Player player0 = new Player('o');
+        player0 = new Player('o');
         player0.setStrategy(this.askStrategy());
         System.out.println("SpielerX:");
         Player playerX = new Player('x');
