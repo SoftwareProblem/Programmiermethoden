@@ -9,9 +9,10 @@ import ttt.game.Game;
 import javax.swing.*;
 
 
-public class PieChart extends ApplicationFrame {
+public class PieChart extends Charts {
     private DefaultPieDataset pieDataset;
     private  int[] turns;
+
     public PieChart(String title) {
             super(title);
 
@@ -21,8 +22,8 @@ public class PieChart extends ApplicationFrame {
             }
 
         }
-
-    public void collectPieData(Game game){
+        @Override
+        public void collectData(Game game){
         turns[game.getTurn()]++;
     }
 
@@ -34,9 +35,6 @@ public class PieChart extends ApplicationFrame {
 
             }
 
-
-
-
             return data;
         }
         private   JFreeChart makeChart(PieDataset data){
@@ -44,11 +42,12 @@ public class PieChart extends ApplicationFrame {
             return chart;
 
         }
-        private  JPanel panel(){
+        @Override
+        protected   JPanel panel(){
             JFreeChart chart= makeChart(addData());
             return new ChartPanel(chart);
         }
-
+        @Override
         public void setPanel(){
             setContentPane(panel());
 

@@ -35,6 +35,14 @@ public class Game  implements IGame{
         this.playerX = p;
     }
 
+    public IPlayer getPlayerO() {
+        return playerO;
+    }
+
+    public IPlayer getPlayerX() {
+        return playerX;
+    }
+
     /**
      * Setzt den PlayerO auf p
      * @param p ein Spieler

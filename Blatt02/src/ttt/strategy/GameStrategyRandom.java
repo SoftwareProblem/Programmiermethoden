@@ -24,4 +24,9 @@ public class GameStrategyRandom implements IGameStrategy{
         }
         return nextMove(g);
     }
+
+    @Override
+    public String toString() {
+        return "Random";
+    }
 }

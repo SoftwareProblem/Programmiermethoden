@@ -1,5 +1,6 @@
 package ttt;
 
+import ttt.Charts.BarChart;
 import ttt.Charts.PieChart;
 import ttt.game.*;
 import ttt.strategy.GameStrategyClassic;
@@ -16,6 +17,7 @@ public class Hilfsklasse {
         Hilfsklasse hilfsklasse = new Hilfsklasse();
         Game game;
         PieChart pieChartTurns=new PieChart("Turns played");
+        BarChart barChartWins =new BarChart("Wins by Strategy");
         boolean weiterSpielen = true;
         while(weiterSpielen) {
             game = new Game();
@@ -26,10 +28,15 @@ public class Hilfsklasse {
                 game.printField();
                 System.out.println(game.getTurn());
             }
+            barChartWins.collectData(game);
 
-            pieChartTurns.collectPieData((Game) game);
+            pieChartTurns.collectData(game);
             weiterSpielen = Hilfsklasse.weiterSpielen();
         }
+        barChartWins.addData();
+        barChartWins.setPanel();
+        barChartWins.setSize(1000,800);
+        barChartWins.setVisible(true);
         pieChartTurns.addData();
         pieChartTurns.setPanel();
         pieChartTurns.setSize(1000,800);

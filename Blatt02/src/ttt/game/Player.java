@@ -9,6 +9,9 @@ public class Player implements IPlayer {
     private char symbol;
     private IGameStrategy strategy;
     private IMove currentMove;
+    public IGameStrategy getStrategy() {
+        return strategy;
+    }
 
     /**
      * Konstruktor des Spielers
@@ -45,4 +48,7 @@ public class Player implements IPlayer {
     public char getSymbol() {
         return this.symbol;
     }
+
+
+
 }

@@ -77,7 +77,12 @@ public class GameStrategyClassic implements IGameStrategy {
             return askColoum();
         }
     }
-    private IMove hopToNext(List<IMove> moves, IPlayer currentPlayer){
-        return moves.get(0);
+
+    @Override
+    public String toString() {
+        return "Classic";
     }
+    //private IMove hopToNext(List<IMove> moves, IPlayer currentPlayer){
+      //  return moves.get(0);
+    //}
 }
