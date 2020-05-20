@@ -8,6 +8,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import ttt.game.Game;
 import ttt.game.IPlayer;
 import ttt.game.Player;
+import ttt.strategy.GameStrategyClassic;
+import ttt.strategy.GameStrategyRandom;
+import ttt.strategy.MinMaxStrategy;
 
 import javax.swing.*;
 
@@ -28,7 +31,6 @@ public class BarChart extends Charts {
     @Override
     public void collectData(Game game) {
         whatWon(game);
-
     }
 
 
@@ -57,6 +59,10 @@ public class BarChart extends Charts {
     }
 
 
+    /**
+     * @param game
+     * Finds if a and which Player has won a game
+     */
     private void whatWon(Game game) {
         if (game.evalState(game.currentPlayer()) == 1) {
 
@@ -73,13 +79,18 @@ public class BarChart extends Charts {
 
     }
 
+
+    /**
+     * @param Iplayer
+     * Finds out which Strategy was used by the Player who won and counts it.
+     */
     private void countStrategyUP(IPlayer Iplayer) {
         Player player = (Player) Iplayer;
-        if (player.getStrategy().toString().equals("Classic")) {
+        if (player.getStrategy().equals(GameStrategyClassic.class)) {
             classic++;
-        } else if (player.getStrategy().toString().equals("Random")) {
+        } else if (player.getStrategy().getClass().equals(GameStrategyRandom.class)) {
             random++;
-        } else if (player.getStrategy().toString().equals("MinMax")) {
+        } else if (player.getStrategy().getClass().equals(MinMaxStrategy.class)) {
             minMax++;
 
         }

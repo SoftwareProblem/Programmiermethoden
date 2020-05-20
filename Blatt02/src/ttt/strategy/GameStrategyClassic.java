@@ -78,11 +78,4 @@ public class GameStrategyClassic implements IGameStrategy {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Classic";
-    }
-    //private IMove hopToNext(List<IMove> moves, IPlayer currentPlayer){
-      //  return moves.get(0);
-    //}
 }

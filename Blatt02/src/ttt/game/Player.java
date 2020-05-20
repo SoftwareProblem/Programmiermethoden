@@ -8,7 +8,6 @@ import ttt.strategy.IGameStrategy;
 public class Player implements IPlayer {
     private char symbol;
     private IGameStrategy strategy;
-    private IMove currentMove;
     public IGameStrategy getStrategy() {
         return strategy;
     }
