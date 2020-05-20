@@ -14,6 +14,9 @@ import ttt.strategy.MinMaxStrategy;
 
 import javax.swing.*;
 
+/**
+ * Represents the number of won Games by the strategies as a barchart
+ */
 public class BarChart extends Charts {
     //counts the wins by strategies
 
@@ -28,6 +31,10 @@ public class BarChart extends Charts {
         minMax = 0;
     }
 
+    /**
+     * @param game The Game the data is collected from
+     * Counts the times a specific Strategy won
+     */
     @Override
     public void collectData(Game game) {
         whatWon(game);
@@ -42,7 +49,7 @@ public class BarChart extends Charts {
 
 
     @Override
-    public CategoryDataset addData() {
+    protected CategoryDataset addData() {
         DefaultCategoryDataset data = new DefaultCategoryDataset();
         data.addValue(classic, "Classic", "Wins");
         data.addValue(random, "Random", "Wins");
@@ -51,7 +58,9 @@ public class BarChart extends Charts {
         return data;
     }
 
-    public JFreeChart makeChart(CategoryDataset data) {
+
+
+    private JFreeChart makeChart(CategoryDataset data) {
         JFreeChart chart = ChartFactory.createBarChart("Wins by Strategy", "Strategy", "Wins", data);
 
         return chart;
@@ -59,10 +68,7 @@ public class BarChart extends Charts {
     }
 
 
-    /**
-     * @param game
-     * Finds if a and which Player has won a game
-     */
+
     private void whatWon(Game game) {
         if (game.evalState(game.currentPlayer()) == 1) {
 
@@ -80,10 +86,6 @@ public class BarChart extends Charts {
     }
 
 
-    /**
-     * @param Iplayer
-     * Finds out which Strategy was used by the Player who won and counts it.
-     */
     private void countStrategyUP(IPlayer Iplayer) {
         Player player = (Player) Iplayer;
         if (player.getStrategy().equals(GameStrategyClassic.class)) {

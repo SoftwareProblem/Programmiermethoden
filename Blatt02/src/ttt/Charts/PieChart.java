@@ -12,6 +12,9 @@ import ttt.game.Game;
 import javax.swing.*;
 
 
+/**
+ * Represents the number of turns every round takes as a piechart
+ */
 public class PieChart extends Charts {
     private DefaultPieDataset pieDataset;
     private int[] turns;
@@ -25,13 +28,17 @@ public class PieChart extends Charts {
 
     }
 
+    /**
+     * @param game The Game the data is collected from
+     * Counts the number of Turns for a round and saves it in an array
+     */
     @Override
     public void collectData(Game game) {
         turns[game.getTurn()]++;
     }
 
     @Override
-    public PieDataset addData() {
+    protected PieDataset addData() {
         DefaultPieDataset data = new DefaultPieDataset();
         for (int i = 5; i < turns.length; i++) {
             data.setValue(i - 2 + "Turns", turns[i]);

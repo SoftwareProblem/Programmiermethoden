@@ -6,15 +6,20 @@ import ttt.game.Game;
 
 import javax.swing.*;
 
+/**
+ * Abstract Class for all drawn Charts
+ */
 public  abstract class Charts extends ApplicationFrame {
+
+
+    /**
+     * @param title the title of the chart
+     */
     public Charts(String title) {
         super(title);
     }
 
-    /**
-     * Creates a Dataset out of the collected data
-     * @return a Dataset of a specific Type
-     */
+
     protected abstract  <T extends Dataset> T addData();
 
 
@@ -23,6 +28,8 @@ public  abstract class Charts extends ApplicationFrame {
      * Collects the needed data from a Game
      */
     public abstract void collectData(Game game);
+
+
 
     protected abstract JPanel panel();
 

@@ -4,12 +4,14 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.PieDataset;
 import ttt.game.Game;
 
 import javax.swing.*;
 import java.util.ArrayList;
 
+/**
+ * A Linechart that shows ne number of won games for every round played
+ */
 //Rounds won by Player
 public class LineChart extends Charts {
 
@@ -27,6 +29,10 @@ public class LineChart extends Charts {
         }
 
 
+    /**
+     * @param game The Game the data is collected from
+     * Counts the won games of the Players
+     */
     @Override
     public void collectData(Game game) {
             round++;
@@ -48,8 +54,10 @@ public class LineChart extends Charts {
              }
 
     }
+
+
     @Override
-    public DefaultCategoryDataset addData (){
+    protected DefaultCategoryDataset addData (){
         DefaultCategoryDataset data=new DefaultCategoryDataset();
         int playerOCount=0;
         int playerXCount=0;
@@ -63,6 +71,7 @@ public class LineChart extends Charts {
         return data;
 
     }
+
 
     private JFreeChart makeChart(DefaultCategoryDataset data){
         JFreeChart chart = ChartFactory.createLineChart("Rounds won by Player", "Rounds", "Won", data);

@@ -28,7 +28,6 @@ public class Hilfsklasse {
             while (!game.ended()) {
                 game.doMove(game.currentPlayer().nextMove(game));
                 game.printField();
-                System.out.println(game.getTurn());
             }
             barChartWins.collectData(game);
             lineChartPlayer.collectData(game);
