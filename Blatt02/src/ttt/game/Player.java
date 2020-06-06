@@ -47,7 +47,4 @@ public class Player implements IPlayer {
     public char getSymbol() {
         return this.symbol;
     }
-
-
-
 }
