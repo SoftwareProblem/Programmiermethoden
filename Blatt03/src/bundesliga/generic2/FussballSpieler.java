@@ -5,5 +5,7 @@ public class FussballSpieler extends Spieler {
         super(name);
     }
 
-    public void schiessTor(){}
+    public void schiessTor(){
+        this.score();
+    }
 }

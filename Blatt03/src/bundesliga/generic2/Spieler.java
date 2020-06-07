@@ -2,7 +2,9 @@ package bundesliga.generic2;
 
 public class Spieler implements ISpieler{
     String name;
+    int punkte;
     public Spieler(String name){
+        this.punkte = 0;
         this.name = name;
     }
     @Override
@@ -12,11 +14,11 @@ public class Spieler implements ISpieler{
 
     @Override
     public int getPunkte() {
-        return 0;
+        return this.punkte;
     }
 
     @Override
     public void score() {
-
+        this.punkte++;
     }
 }

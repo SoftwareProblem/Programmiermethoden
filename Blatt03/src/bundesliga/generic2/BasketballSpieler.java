@@ -5,5 +5,8 @@ public class BasketballSpieler extends Spieler{
         super(name);
     }
 
-    public void wirfKorb(){}
+    public void wirfKorb(){
+        this.score();
+        this.score();
+    }
 }
