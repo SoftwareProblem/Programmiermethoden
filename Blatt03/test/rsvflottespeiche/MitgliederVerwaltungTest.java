@@ -63,6 +63,9 @@ public class MitgliederVerwaltungTest {
     SportartException triathlon;
     SportartException bahn;
 
+    /**
+     * Voreinstellung für jeden Test
+     */
     @Before
     public void setUp(){
         mitgliederVerwaltung = new MitgliederVerwaltung();
@@ -77,6 +80,11 @@ public class MitgliederVerwaltungTest {
     public SportArt typ;
     @Parameterized.Parameter(3)
     public String erg;
+
+    /**
+     * Funktion für parametisierte Tests
+     * @return Collection der Parameter
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> values() {
         return Arrays.asList(new Object[][]{
@@ -86,6 +94,9 @@ public class MitgliederVerwaltungTest {
         });
     }
 
+    /**
+     * Testet die NameException
+     */
     @Test
     public void testNameException(){
         try{
@@ -97,6 +108,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception ausgelöst");
         }
     }
+
+    /**
+     * Testet die AlterException
+     */
     @Test
     public void testAlterException(){
         try{
@@ -108,6 +123,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception ausgelöst");
         }
     }
+
+    /**
+     * Testet SportArtException auf "Triathlon"
+     */
     @Test
     public void testTriathlon(){
         try {
@@ -119,6 +138,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception ausgelöst");
         }
     }
+
+    /**
+     * Testet SportArtException auf "Bahn"
+     */
     @Test
     public void testBahn(){
         try{
@@ -130,6 +153,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception ausgelöst");
         }
     }
+
+    /**
+     * Testet ob die Reihenfolge der Exceptionauslösung passt beim NameException und AlterException
+     */
     @Test
     public void testReihenfolgeException12(){
         try{
@@ -143,6 +170,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception ausgelöst");
         }
     }
+
+    /**
+     * Testet ob die Reihenfolge der Exceptionauslösung passt beim AlterException und SportartException
+     */
     @Test
     public void testReihenfolgeException23(){
         try{
@@ -157,14 +188,18 @@ public class MitgliederVerwaltungTest {
         }
     }
 
-
-
+    /**
+     * Testet die Gültigen ÄK über parametisierte Tests
+     */
     @Test
     public void testBeitritt(){
         mitgliederVerwaltung = new MitgliederVerwaltung();
         Assert.assertEquals(mitgliederVerwaltung.beitritt(name,alter,typ),erg);
     }
 
+    /**
+     * Testfall 2, Großschreibung des Namen
+     */
     @Test
     public void test2(){
         try{
@@ -176,6 +211,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception geworfen");
         }
     }
+
+    /**
+     * Testfall 3,Leerer Name
+     */
     @Test
     public void test3(){
         try{
@@ -187,6 +226,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception geworfen");
         }
     }
+
+    /**
+     * Testfall 4, Nicht Buchstaben im namen
+     */
     @Test
     public void test4(){
         try{
@@ -198,6 +241,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception geworfen");
         }
     }
+
+    /**
+     * Testfall 5, Alter kleiner als erlaubt
+     */
     @Test
     public void test5(){
         try{
@@ -209,6 +256,10 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception geworfen");
         }
     }
+
+    /**
+     * Testfall 6, Alter größer als erlaubt
+     */
     @Test
     public void test6(){
         try{
@@ -221,6 +272,10 @@ public class MitgliederVerwaltungTest {
         }
     }
     // Test7 nicht möglich da Compiler schon meckert
+
+    /**
+     * Testfall 8, Grenzwert Alter, knapp drunter
+     */
     @Test
     public void test8(){
         try{
@@ -232,14 +287,26 @@ public class MitgliederVerwaltungTest {
             Assert.fail("Falsche Exception geworfen");
         }
     }
+
+    /**
+     * Testfall 9, Grenzwert Alter, von Unten knapp drin
+     */
     @Test
     public void test9(){
         Assert.assertEquals(mitgliederVerwaltung.beitritt("Dudas",20,SportArt.Marathon),"D20M");
     }
+
+    /**
+     * Testfall 10, Grenzwert Alter, Von Oben knapp drin
+     */
     @Test
     public void test10(){
         Assert.assertEquals(mitgliederVerwaltung.beitritt("Dudas",60,SportArt.Marathon),"D60M");
     }
+
+    /**
+     * Testfall 11, Grenzwert Alter, knapp drüber
+     */
     @Test
     public void test11(){
         try{

@@ -23,7 +23,7 @@ public interface ILiga {
      * @param mannschaft Mannschaft, die entfernt werden soll.
      * @return <code>false</code> bei einem Fehler, sonst <code>true</code>.
      */
-    boolean rauswerfen(IMannschaft mannschaft);
+
 
     /**
      * Sortiert die Mannschaften der Liga absteigend nach den Punkten der
