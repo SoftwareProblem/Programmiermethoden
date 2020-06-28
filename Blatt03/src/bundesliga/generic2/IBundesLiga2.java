@@ -1,6 +1,6 @@
 package bundesliga.generic2;
 
-public interface IBundesLiga2{
+public interface IBundesLiga2 extends ILiga<IMannschaft<? extends FussballSpieler>>{
     /**
      * Fügt eine Mannschaft der Liga hinzu.
      *
@@ -12,7 +12,7 @@ public interface IBundesLiga2{
      * @param mannschaft Mannschaft, die hinzugefügt werden soll.
      * @return false bei einem Fehler, sonst true
      */
-    boolean aufnehmen(IMannschaft<FussballSpieler> mannschaft);
+    boolean aufnehmen(IMannschaft<? extends FussballSpieler> mannschaft);
 
     /**
      * Entfernt eine Mannschaft aus der Liga.
@@ -20,7 +20,7 @@ public interface IBundesLiga2{
      * @param mannschaft Mannschaft, die entfernt werden soll.
      * @return <code>false</code> bei einem Fehler, sonst <code>true</code>.
      */
-    boolean rauswerfen(IMannschaft<FussballSpieler> mannschaft);
+    boolean rauswerfen(IMannschaft<? extends FussballSpieler> mannschaft);
     /**
      * Sortiert die Mannschaften der Liga absteigend nach den Punkten der
      * einzelnen Mannschaften
@@ -33,7 +33,7 @@ public interface IBundesLiga2{
      * @param mannschaft Mannschaft, deren Mitgliedschaft geprüft werden soll.
      * @return <code>true</code> falls Mitglied, sonst <code>false</code>.
      */
-    boolean contains(IMannschaft<FussballSpieler> mannschaft);
+    boolean contains(IMannschaft<? extends FussballSpieler> mannschaft);
     /**
      * Wieviele Mannschaften spielen in dieser Liga?
      *
@@ -48,7 +48,7 @@ public interface IBundesLiga2{
      * @return Referenz auf die erste Mannschaft in der Liga; <code>null</code>
      * falls keine Mannschaften vorhanden.
      */
-    IMannschaft<FussballSpieler> getFirstTeam();
+    IMannschaft<? extends FussballSpieler> getFirstTeam();
     /**
      * Welches Team steht aktuell auf dem letzten Platz der Liga?
      * <p>
@@ -57,5 +57,5 @@ public interface IBundesLiga2{
      * @return Referenz auf die letzte Mannschaft in der Liga; <code>null</code>
      * falls keine Mannschaften vorhanden.
      */
-    IMannschaft<FussballSpieler> getLastTeam();
+    IMannschaft<? extends FussballSpieler> getLastTeam();
 }

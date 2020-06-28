@@ -45,12 +45,12 @@ import java.util.Collection;
  *
  * 3.
  *  1. Eingabe: "Dudas",26,"Marathon"   Ausgabe: "D26M"     ÄK: 1. 2. 3.
- *  2. Eingabe: "dudas",26,"Marathon"   Ausgabe: Exception  ÄK: 2.3. UÄK: 1.2 -> Grenzwert
- *  3. Eingabe: "",26,"Marathon"        Ausgabe: Exception  ÄK: 2.3. UÄK: 1.1 -> Grenzwert
- *  4. Eingabe: "123",26,"Marathon"     Ausgabe: Exception  ÄK: 2.3. UÄK: 1.3 -> Grenzwert
- *  5. Eingabe: "Dudas",0,"Marathon"    Ausgabe: Exception  ÄK: 1.3. UÄK: 2.1
- *  6. Eingabe: "Dudas",100,"Marathon"  Ausgabe: Exception  ÄK: 1.3. UÄK: 2.2
- *  7. Eingabe: "Dudas",26,"Sprinter"   Ausgabe: Exception  ÄK: 1.2. UAK: 3.1
+ *  2. Eingabe: "dudas",26,"Marathon"   Ausgabe: Exception  ÄK: 2. 3. UÄK: 1.2 -> Grenzwert
+ *  3. Eingabe: "",26,"Marathon"        Ausgabe: Exception  ÄK: 2. 3. UÄK: 1.1 -> Grenzwert
+ *  4. Eingabe: "123",26,"Marathon"     Ausgabe: Exception  ÄK: 2. 3. UÄK: 1.3 -> Grenzwert
+ *  5. Eingabe: "Dudas",0,"Marathon"    Ausgabe: Exception  ÄK: 1. 3. UÄK: 2.1
+ *  6. Eingabe: "Dudas",100,"Marathon"  Ausgabe: Exception  ÄK: 1. 3. UÄK: 2.2
+ *  7. Eingabe: "Dudas",26,"Sprinter"   Ausgabe: Exception  ÄK: 1. 2. UAK: 3.1
  *
  *  8. Eingabe: "Dudas",19,"Marathon"   Ausgabe: Excpetion -> Grenzwert Alter
  *  9. Eingabe: "Dudas",20,"Marathon"   Ausgabe: "D20M" -> Grenzwert Alter

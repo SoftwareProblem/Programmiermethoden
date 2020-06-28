@@ -1,6 +1,6 @@
 package bundesliga.generic2;
 
-public interface IBundesLiga<T extends IMannschaft<? extends FussballSpieler>> {
+public interface IBundesLiga<T extends IMannschaft<? extends FussballSpieler>> extends ILiga<T> {
     /**
      * Fügt eine Mannschaft der Liga hinzu.
      *
