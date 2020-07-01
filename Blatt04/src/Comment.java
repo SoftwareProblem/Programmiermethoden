@@ -5,7 +5,7 @@ public class Comment extends Token{
 
     public Comment(){
         // Regex soll sagen: // mindestens einmal dann egal was bis Zeilenende
-        super.pattern = Pattern.compile("//[^\\n\\r]+?(?:\\*\\)|[\\n\\r])");
+        super.pattern = Pattern.compile("^(//[^\\n\\r]+?(?:\\*\\)|[\\n\\r]))");
     }
 
     @Override

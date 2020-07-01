@@ -24,12 +24,10 @@ public class Lexer {
         // und das dann von string abziehe und beim erneuten aufruf nur den verkürzten nehme sollte es klappen
         while(string.length()!=0) {
             Token test = testTokens(string);
-            System.out.println(string);
             if(test!=null) {
                 tokenList.add(testTokens(string));
                 string = string.replace(tokenList.getLast().getContent(), "");
             } else {
-                //System.out.println("Was bedeutet es wenn ich hier lande?!");
             }
         }
         return tokenList;

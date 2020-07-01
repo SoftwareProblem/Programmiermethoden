@@ -4,12 +4,12 @@ public class NewLine extends Token{
     private String content;
 
     public NewLine(){
-        super.pattern = Pattern.compile("\n");
+        super.pattern = Pattern.compile("^(\\r\\n|[\\r\\n])");
     }
 
     @Override
     protected void setContent(String string) {
-        this.content = content;
+        this.content = string;
     }
 
     @Override

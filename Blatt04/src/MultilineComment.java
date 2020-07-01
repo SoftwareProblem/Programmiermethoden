@@ -5,7 +5,7 @@ public class MultilineComment extends Token{
     private String content;
 
     public MultilineComment(){
-        super.pattern = Pattern.compile("/\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/");
+        super.pattern = Pattern.compile("^(/\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/)");
     }
     @Override
     protected void setContent(String string) {
