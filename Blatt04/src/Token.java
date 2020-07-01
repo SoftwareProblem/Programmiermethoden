@@ -6,8 +6,18 @@ public abstract class Token {
     protected Matcher matcher;
 
     public final Token match(String string){
-        return null;
+        pattern = getToken().pattern;
+        matcher = pattern.matcher(string);
+
+        if(matcher.find()) {
+            Token token = getToken();
+            token.setContent(string.substring(matcher.start(),matcher.end()));
+            return token;
+        }else {
+            return null;
+        }
     }
+    protected abstract void setContent(String string);
     protected abstract Token getToken();
     protected abstract String getContent();
 }
