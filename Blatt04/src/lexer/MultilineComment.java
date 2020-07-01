@@ -1,4 +1,5 @@
-import java.util.regex.Matcher;
+package lexer;
+
 import java.util.regex.Pattern;
 
 public class MultilineComment extends Token{

@@ -1,12 +1,15 @@
+package lexer;
+
 import java.util.regex.Pattern;
 
-public class KeyWord extends Token{
+public class Comment extends Token {
     private String content;
 
-    // Muss ich hier im regex mehrere oders packen oder doch für jedes Keyword eine Klasse?
-    public KeyWord(){
-        super.pattern = Pattern.compile("^((void){1}|(public){1}|(private){1}|(protected){1}|(this){1})");
+    public Comment(){
+        // Regex soll sagen: // mindestens einmal dann egal was bis Zeilenende
+        super.pattern = Pattern.compile("^(//[^\\n\\r]+?(?:\\*\\)|[\\n\\r]))");
     }
+
     @Override
     protected void setContent(String string) {
         this.content = string;
@@ -14,7 +17,7 @@ public class KeyWord extends Token{
 
     @Override
     protected Token getToken() {
-        return new KeyWord();
+        return new Comment();
     }
 
     @Override

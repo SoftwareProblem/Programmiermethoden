@@ -1,10 +1,13 @@
+package lexer;
+
 import java.util.regex.Pattern;
 
-public class NewLine extends Token{
+public class CatchAll extends Token {
     private String content;
 
-    public NewLine(){
-        super.pattern = Pattern.compile("(\\r\\n){1}|([\\r\\n]){1}");
+
+    public CatchAll(){
+        super.pattern = Pattern.compile("^.",Pattern.DOTALL);
     }
 
     @Override
@@ -14,7 +17,7 @@ public class NewLine extends Token{
 
     @Override
     protected Token getToken() {
-        return new NewLine();
+        return new CatchAll();
     }
 
     @Override

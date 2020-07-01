@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package lexer;
+
+import lexer.CatchAll;
+import lexer.Token;
+
 import java.util.LinkedList;
 import java.util.List;
 

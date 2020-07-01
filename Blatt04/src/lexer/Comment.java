@@ -1,10 +1,13 @@
+package lexer;
+
 import java.util.regex.Pattern;
 
-public class StringContent extends Token {
+public class Comment extends Token {
     private String content;
 
-    public StringContent(){
-        super.pattern = Pattern.compile("^(\"[^*]*\"){1}");
+    public Comment(){
+        // Regex soll sagen: // mindestens einmal dann egal was bis Zeilenende
+        super.pattern = Pattern.compile("^(//[^\\n\\r]+?(?:\\*\\)|[\\n\\r]))");
     }
 
     @Override
@@ -14,7 +17,7 @@ public class StringContent extends Token {
 
     @Override
     protected Token getToken() {
-        return new StringContent();
+        return new Comment();
     }
 
     @Override
