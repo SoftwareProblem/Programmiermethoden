@@ -11,6 +11,7 @@ public abstract class Token {
 
         if(matcher.find()) {
             Token token = getToken();
+            System.out.println(token.getClass());
             token.setContent(string.substring(matcher.start(),matcher.end()));
             return token;
         }else {

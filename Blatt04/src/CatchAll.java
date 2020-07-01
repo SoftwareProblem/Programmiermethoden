@@ -5,7 +5,7 @@ public class CatchAll extends Token{
 
 
     public CatchAll(){
-        super.pattern = Pattern.compile("^(.{1})",Pattern.DOTALL);
+        super.pattern = Pattern.compile("^.",Pattern.DOTALL);
     }
 
     @Override

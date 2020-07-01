@@ -4,7 +4,7 @@ public class NewLine extends Token{
     private String content;
 
     public NewLine(){
-        super.pattern = Pattern.compile("^(\\r\\n|[\\r\\n])");
+        super.pattern = Pattern.compile("(\\r\\n){1}|([\\r\\n]){1}");
     }
 
     @Override

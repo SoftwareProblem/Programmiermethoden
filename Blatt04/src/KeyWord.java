@@ -5,7 +5,7 @@ public class KeyWord extends Token{
 
     // Muss ich hier im regex mehrere oders packen oder doch für jedes Keyword eine Klasse?
     public KeyWord(){
-        super.pattern = Pattern.compile("");
+        super.pattern = Pattern.compile("(void){1}|(public){1}|(private){1}|(protected){1}|(this){1}");
     }
     @Override
     protected void setContent(String string) {

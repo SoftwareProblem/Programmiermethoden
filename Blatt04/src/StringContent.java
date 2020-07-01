@@ -4,7 +4,7 @@ public class StringContent extends Token {
     private String content;
 
     public StringContent(){
-        super.pattern = Pattern.compile("^(\".*\")");
+        super.pattern = Pattern.compile("^(\"[^*]*\"){1}");
     }
 
     @Override

@@ -15,7 +15,7 @@ public class Lexer {
         this.token.addAll(token);
     }
     public void registerCatchAll(Token token){
-        this.token.add(token);
+        this.catchAll = token;
     }
     public List<Token> tokenize(String string){
         LinkedList<Token> tokenList = new LinkedList<>();
@@ -25,9 +25,12 @@ public class Lexer {
         while(string.length()!=0) {
             Token test = testTokens(string);
             if(test!=null) {
-                tokenList.add(testTokens(string));
+                tokenList.add(test);
                 string = string.replace(tokenList.getLast().getContent(), "");
             } else {
+                Token catchAll = new CatchAll();
+                catchAll.setContent(Character.toString(string.charAt(0)));
+                string = string.substring(1);
             }
         }
         return tokenList;
