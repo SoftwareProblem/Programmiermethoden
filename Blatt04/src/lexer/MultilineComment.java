@@ -1,7 +1,9 @@
 package lexer;
 
-import java.util.regex.Pattern;
+import lexer.Annotationen.Prio;
 
+import java.util.regex.Pattern;
+@Prio(1)
 public class MultilineComment extends Token{
     private String content;
 

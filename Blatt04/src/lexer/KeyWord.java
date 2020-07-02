@@ -1,7 +1,10 @@
 package lexer;
 
+import lexer.Annotationen.Prio;
+
 import java.util.regex.Pattern;
 
+@Prio(2)
 public class KeyWord extends Token {
     private String content;
 

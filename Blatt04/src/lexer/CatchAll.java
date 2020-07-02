@@ -1,7 +1,9 @@
 package lexer;
 
-import java.util.regex.Pattern;
+import lexer.Annotationen.Prio;
 
+import java.util.regex.Pattern;
+@Prio(3)
 public class CatchAll extends Token {
     private String content;
 

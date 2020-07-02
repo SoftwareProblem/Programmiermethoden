@@ -1,8 +1,11 @@
 package lexer;
 
+import lexer.Annotationen.Prio;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Prio(1)
 public abstract class Token {
     protected Pattern pattern;
     protected Matcher matcher;

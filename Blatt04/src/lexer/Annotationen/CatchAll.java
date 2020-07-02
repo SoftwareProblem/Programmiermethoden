@@ -1,3 +1,5 @@
+package lexer.Annotationen;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

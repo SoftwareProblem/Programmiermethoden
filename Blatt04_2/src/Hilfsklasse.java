@@ -25,7 +25,7 @@ public class Hilfsklasse {
         testList.add(new KeyWord());
         testList.add(new NewLine());
         test.registerToken(testList);
-        test.registerCatchAll(new CatchAll());
+        test.registerCatchAll(new lexer.CatchAll());
         List<Token> list = new LinkedList<>();
         list = test.tokenize(testString);
     }

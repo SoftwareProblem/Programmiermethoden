@@ -1,7 +1,9 @@
 package lexer;
 
-import java.util.regex.Pattern;
+import lexer.Annotationen.Prio;
 
+import java.util.regex.Pattern;
+@Prio(2)
 public class NewLine extends Token{
     private String content;
 
